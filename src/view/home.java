@@ -29,18 +29,16 @@ import javax.swing.SwingConstants;
 public class Home extends JFrame {
 
 	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					Home frame = new Home();
-					frame.setLocationRelativeTo(null);
-					frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
+		EventQueue.invokeLater(() -> {
+                    try {
+                        Home frame = new Home();
+			frame.setLocationRelativeTo(null);
+			frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
+			frame.setVisible(true);
+                    } catch (Exception e) {
+			e.printStackTrace();
 				}
-			}
-		});
+                });
 	}
 
 	//Interface principal
@@ -65,79 +63,105 @@ public class Home extends JFrame {
 		mnInicio.add(mnConf);
 		
 		JMenuItem mnClose = new JMenuItem("Sair");
-		mnClose.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				Methods metodo = new Methods();
-				metodo.sair();
-			}
-		});
+		mnClose.addActionListener((e) -> {
+                    Methods metodo = new Methods();
+                    metodo.sair();
+                });
 		mnInicio.add(mnClose);
 		
 		JMenu mnGestao = new JMenu("Gerenciar Produtos");
 		menuBar.add(mnGestao);
 		
 		JMenuItem mnAdic = new JMenuItem("Adicionar Produtos");
-		mnAdic.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				abrir("adicionar");
-			}
-		});
+		mnAdic.addActionListener((e) -> abrir("adicionar"));
 		mnGestao.add(mnAdic);
 		
 		JMenuItem mnEdit = new JMenuItem("Editar Produtos");
+                mnEdit.addActionListener((e) -> {
+                    // Metodo a ser implementado
+                });
 		mnGestao.add(mnEdit);
 		
 		JMenuItem mnRemov = new JMenuItem("Remover Produtos");
-		mnRemov.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				abrir("remove");
-			}
-		});
+		mnRemov.addActionListener((e) -> abrir("remove"));
 		mnGestao.add(mnRemov);
 		
 		JMenu mnBusca = new JMenu("Busca");
 		menuBar.add(mnBusca);
 		
 		JMenuItem mnBuscNome = new JMenuItem("Buscar Produtos por Nome");
+                mnBuscNome.addActionListener((e) -> {
+                    //Metodo a ser implementado
+                });
 		mnBusca.add(mnBuscNome);
 		
 		JMenuItem mnBuscID = new JMenuItem("Buscar Produtos por ID");
+                mnBuscID.addActionListener((e) -> {
+                    //Metodo a ser implementado
+                });
 		mnBusca.add(mnBuscID);
 		
 		JMenuItem mnBuscQuant = new JMenuItem("Buscar Produtos por Quantidade");
+                mnBuscQuant.addActionListener((e) -> {
+                    //Metodo a ser implementado
+                });
 		mnBusca.add(mnBuscQuant);
 		
 		JMenuItem mnBuscPreco = new JMenuItem("Buscar Produtos por Pre\u00E7o");
+                mnBuscPreco.addActionListener((e) -> {
+                    //Metodo a ser implementado
+                });
 		mnBusca.add(mnBuscPreco);
 		
 		JMenu mnLogist = new JMenu("Entrada / Sa\u00EDda");
 		menuBar.add(mnLogist);
 		
 		JMenuItem mnEntrada = new JMenuItem("Entrada no Estoque");
+                mnEntrada.addActionListener((e) -> {
+                    //Metodo a ser implemetado
+                });
 		mnLogist.add(mnEntrada);
 		
 		JMenuItem mnSaida = new JMenuItem("Saida do Estoque");
+                mnSaida.addActionListener((e) -> {
+                    //Metodo a ser implementado
+                });
 		mnLogist.add(mnSaida);
 		
 		JMenuItem mnBalanco = new JMenuItem("Balan\u00E7o");
+                mnBalanco.addActionListener((e) -> {
+                    //Metodo a ser implementado
+                });
 		mnLogist.add(mnBalanco);
 		
 		JMenu mnExtorno = new JMenu("Devolu\u00E7\u00E3o");
 		menuBar.add(mnExtorno);
 		
 		JMenuItem mnDev = new JMenuItem("Devolu\u00E7\u00E3o");
+                mnDev.addActionListener((e) -> {
+                    //Implemente aqui o seu codigo
+                });
 		mnExtorno.add(mnDev);
 		
 		JMenuItem mnQuebra = new JMenuItem("Quebra");
+                mnQuebra.addActionListener((e) -> {
+                    //Implemente aqui o seu codigo
+                });
 		mnExtorno.add(mnQuebra);
 		
 		JMenuItem mnVencido = new JMenuItem("Vencido");
+                mnVencido.addActionListener((e) -> {
+                    //Implemente aqui o seu codigo
+                });
 		mnExtorno.add(mnVencido);
 		
 		JMenu mnFinanceiro = new JMenu("Financeiro");
 		menuBar.add(mnFinanceiro);
 		
 		JMenuItem mnConsulta = new JMenuItem("Consulta Financeira");
+                mnConsulta.addActionListener((e) -> {
+                    //Implemente aqui o seu codigo
+                });
 		mnFinanceiro.add(mnConsulta);
 		
 		JLabel label = new JLabel("");

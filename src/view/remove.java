@@ -28,16 +28,14 @@ public class Remove extends JFrame {
 	private JTextField txtGtin;
 
 	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					Remove frame = new Remove();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
+		EventQueue.invokeLater(() -> {
+                    try {
+                        Remove frame = new Remove();
+                        frame.setVisible(true);
+                    } catch (Exception e) {
+			e.printStackTrace();
+                    }
+                });
 	}
 
 	//Interface de remo��o dos itens
@@ -58,22 +56,18 @@ public class Remove extends JFrame {
 		JButton btnExcluir = new JButton("Excluir");
 		JButton btnCancelar = new JButton("Cancelar");
 		
-		btnVerif.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				
-				//Chama o m�todo para verificar se o valor no campo ID � inteiro;
-				Methods verificar = new Methods();
-				if(verificar.verifInt(txtID.getText())) {
-					
-					//Chama o m�todo conclus�o para mostrar se � o produto que deve ser excluido
-					if(conclus�o(txtID.getText())) {
-						btnVerif.setEnabled(false);
-						txtID.setEnabled(false);
-						btnExcluir.setEnabled(true);
-					}
-				}
+		btnVerif.addActionListener((e) -> {
+                    //Chama o m�todo para verificar se o valor no campo ID � inteiro;
+                    Methods verificar = new Methods();
+                    if(verificar.verifInt(txtID.getText())) {
+                        //Chama o m�todo conclus�o para mostrar se � o produto que deve ser excluido
+			if(conclusao(txtID.getText())) {
+                            btnVerif.setEnabled(false);
+                            txtID.setEnabled(false);
+                            btnExcluir.setEnabled(true);
 			}
-		});
+                    }
+                });
 		btnVerif.setBounds(204, 10, 89, 23);
 		contentPane.add(btnVerif);
 		
@@ -111,15 +105,12 @@ public class Remove extends JFrame {
 		txtQuant.setBounds(75, 163, 118, 20);
 		contentPane.add(txtQuant);
 		
-		btnExcluir.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				Methods metodo = new Methods();
-				
-				if(metodo.confirm("Excluir", "Cancelar", "Isso excluira totalmente o item do seu sistema,\n e n�o ter� como recupera-lo\nDeseja prosseguir?")) {
-					Arquivos.excluirItem(txtID.getText());
-				}
-			}
-		});
+		btnExcluir.addActionListener((e) -> {
+                    Methods metodo = new Methods();
+                    if(metodo.confirm("Excluir", "Cancelar", "Isso excluira totalmente o item do seu sistema,\n e n�o ter� como recupera-lo\nDeseja prosseguir?")) {
+                        Arquivos.excluirItem(txtID.getText());
+                    }
+                });
 		btnExcluir.setEnabled(false);
 		btnExcluir.setBounds(204, 190, 89, 23);
 		contentPane.add(btnExcluir);
@@ -134,23 +125,21 @@ public class Remove extends JFrame {
 		lblGtin.setBounds(7, 191, 60, 14);
 		contentPane.add(lblGtin);
 		
-		btnCancelar.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				btnExcluir.setEnabled(false);
-				btnVerif.setEnabled(true);
-				txtID.setEnabled(true);
-				txtProd.setText("");
-				txtPreco.setText("");
-				txtQuant.setText("");
-				txtGtin.setText("");
-			}
-		});
+		btnCancelar.addActionListener((e) -> {
+                    btnExcluir.setEnabled(false);
+                    btnVerif.setEnabled(true);
+                    txtID.setEnabled(true);
+                    txtProd.setText("");
+                    txtPreco.setText("");
+                    txtQuant.setText("");
+                    txtGtin.setText("");
+                });
 		btnCancelar.setBounds(204, 60, 89, 23);
 		contentPane.add(btnCancelar);
 	}
 	
 	//M�todo para procurar o item e retornar o valor que foi adicionado no objeto para o TextField
-	private boolean conclus�o(String id) {
+	private boolean conclusao(String id) {
 		boolean value = false;
 		
 		if(Arquivos.verifNotID(id) == false) {

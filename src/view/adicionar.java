@@ -49,16 +49,14 @@ public class Adicionar extends JFrame {
 	private JTextField txtGtin;
 
 	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					Adicionar frame = new Adicionar();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
+		EventQueue.invokeLater(() -> {
+                    try {
+			Adicionar frame = new Adicionar();
+			frame.setVisible(true);
+                    } catch (Exception e) {
+			e.printStackTrace();
+                    }
+                });
 	}
 
 	public Adicionar() {
@@ -158,81 +156,77 @@ public class Adicionar extends JFrame {
 		txtDescr.setLineWrap(true);
 		
 		cbxVariacao.setEnabled(false);
-		cbxVariacao.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				/*
-				 *Verifica��o da CheckBox para produtos com varia��o
-				 * A varia��o para produtos ainda ser� desenvolvido
-				 * ser� implementado apenas quando for concluido a etada de busca de produtos
-				 * que sera feito ap�s a etapa de desenvolvimento da adi��o, remo��o e edi��o de produtos.
-				 */
-				if(cbxVariacao.isSelected()) {
-					btnProximo.setEnabled(true);
-					btnFinalizar.setEnabled(false);
-				} else {
-					btnProximo.setEnabled(false);
-					btnFinalizar.setEnabled(true);
-				}
-			}
-		});
+		cbxVariacao.addActionListener((e) -> {
+                    /*
+                    *Verifica��o da CheckBox para produtos com varia��o
+                    * A varia��o para produtos ainda ser� desenvolvido
+                    * ser� implementado apenas quando for concluido a etada de busca de produtos
+                    * que sera feito ap�s a etapa de desenvolvimento da adi��o, remo��o e edi��o de produtos.
+                    */
+                    if(cbxVariacao.isSelected()) {
+			btnProximo.setEnabled(true);
+			btnFinalizar.setEnabled(false);
+                    } else {
+			btnProximo.setEnabled(false);
+			btnFinalizar.setEnabled(true);
+                    }
+                });
 		cbxVariacao.setBounds(10, 206, 97, 23);
 		contentPane.add(cbxVariacao);
 		
-		btnFinalizar.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+		btnFinalizar.addActionListener((e) -> {
+                    
+                    //Evento principal ao clicar para Finalizar a adi��o de um produto.
+                    String tipo = null;
+                    String descr = null;
+                    String gtin = null;
 				
-				//Evento principal ao clicar para Finalizar a adi��o de um produto.
-				String tipo = null;
-				String descr = null;
-				String gtin = null;
+                    //Breve verifica��o do campo do ComboBox
+                    if(cmbTipo.getSelectedItem() == null) {
+                        tipo = "-";
+                    } else {
+			tipo = cmbTipo.getSelectedItem().toString();
+                    }
 				
-				//Breve verifica��o do campo do ComboBox
-				if(cmbTipo.getSelectedItem() == null) {
-					tipo = "-";
-				} else {
-					tipo = cmbTipo.getSelectedItem().toString();
-				}
+                    if(txtGtin.getText().equals("")) {
+			gtin = "0";
+                    } else {
+			gtin = txtGtin.getText();
+                    }
 				
-				if(txtGtin.getText().equals("")) {
-					gtin = "0";
-				} else {
-					gtin = txtGtin.getText();
-				}
-				
-				if(verif(txtID.getText(), txtNome.getText(), txtPreco.getText(), txtDesconto.getText(), gtin, txtDescr.getText())) {
-					String desc = null;
-					if(txtDesconto.getText().length() == 0) {
-						desc = "0.0";
-					} else {
-						desc = txtDesconto.getText();
-					}
-					
-					if(txtDescr.getText().length() == 0) {
-						descr = "Sem informa��es";
-					} else {
-						descr = txtDescr.getText();
-					}
-					
-					//Envio dos dados para a classe do objeto em quest�o (produto)
-					Produto item = new Produto();
-					
-					item.setId(Integer.parseInt(txtID.getText()));
-					item.setNome(txtNome.getText());
-					item.setPreco(Float.parseFloat(txtPreco.getText()));
-					item.setTipo(tipo);
-					item.setDesconto(Float.parseFloat(desc));
-					item.setGtin(Integer.parseInt(gtin));
-					item.setDescr(descr);
-					
-					//Chama o metodo para cadastrar os produtos
-					try {
-						Database.cadastrar();
-					} catch (SQLException e1) {
-						e1.printStackTrace();
-					}
-				}
+                    if(verif(txtID.getText(), txtNome.getText(), txtPreco.getText(), txtDesconto.getText(), gtin, txtDescr.getText())) {
+			String desc = null;
+                        if(txtDesconto.getText().length() == 0) {
+                            desc = "0.0";
+			} else {
+                            desc = txtDesconto.getText();
 			}
-		});
+					
+                        if(txtDescr.getText().length() == 0) {
+                            descr = "Sem informa��es";
+                        } else {
+                            descr = txtDescr.getText();
+                        }
+
+                        //Envio dos dados para a classe do objeto em quest�o (produto)
+                        Produto item = new Produto();
+
+                        item.setId(Integer.parseInt(txtID.getText()));
+                        item.setNome(txtNome.getText());
+                        item.setPreco(Float.parseFloat(txtPreco.getText()));
+                        item.setTipo(tipo);
+                        item.setDesconto(Float.parseFloat(desc));
+                        item.setGtin(Integer.parseInt(gtin));
+                        item.setDescr(descr);
+
+                        //Chama o metodo para cadastrar os produtos
+                        try {
+                            Database.cadastrar();
+                        } catch (SQLException e1) {
+                            e1.printStackTrace();
+                        }
+                    }
+                });
 		btnFinalizar.setBounds(179, 302, 89, 23);
 		contentPane.add(btnFinalizar);
 		
