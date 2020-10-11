@@ -26,8 +26,8 @@ import javax.swing.JCheckBox;
 import javax.swing.JButton;
 import javax.swing.event.ChangeListener;
 
-import control.produto;
-import data.database;
+import control.Produto;
+import data.Database;
 
 import javax.swing.event.ChangeEvent;
 import java.beans.PropertyChangeListener;
@@ -39,7 +39,7 @@ import java.sql.SQLException;
 
 import javax.swing.DefaultComboBoxModel;
 
-public class adicionar extends JFrame {
+public class Adicionar extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField txtID;
@@ -52,7 +52,7 @@ public class adicionar extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					adicionar frame = new adicionar();
+					Adicionar frame = new Adicionar();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -61,7 +61,7 @@ public class adicionar extends JFrame {
 		});
 	}
 
-	public adicionar() {
+	public Adicionar() {
 		setFont(new Font("Arial", Font.BOLD, 14));
 		setTitle("Adicionar Produto");
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -71,7 +71,7 @@ public class adicionar extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		//Declação do conteudo da janela de adição de produtos
+		//Declaï¿½ï¿½o do conteudo da janela de adiï¿½ï¿½o de produtos
 		
 		txtID = new JTextField();
 		txtNome = new JTextField();
@@ -161,10 +161,10 @@ public class adicionar extends JFrame {
 		cbxVariacao.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				/*
-				 *Verificação da CheckBox para produtos com variação
-				 * A variação para produtos ainda será desenvolvido
-				 * será implementado apenas quando for concluido a etada de busca de produtos
-				 * que sera feito após a etapa de desenvolvimento da adição, remoção e edição de produtos.
+				 *Verificaï¿½ï¿½o da CheckBox para produtos com variaï¿½ï¿½o
+				 * A variaï¿½ï¿½o para produtos ainda serï¿½ desenvolvido
+				 * serï¿½ implementado apenas quando for concluido a etada de busca de produtos
+				 * que sera feito apï¿½s a etapa de desenvolvimento da adiï¿½ï¿½o, remoï¿½ï¿½o e ediï¿½ï¿½o de produtos.
 				 */
 				if(cbxVariacao.isSelected()) {
 					btnProximo.setEnabled(true);
@@ -181,12 +181,12 @@ public class adicionar extends JFrame {
 		btnFinalizar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				//Evento principal ao clicar para Finalizar a adição de um produto.
+				//Evento principal ao clicar para Finalizar a adiï¿½ï¿½o de um produto.
 				String tipo = null;
 				String descr = null;
 				String gtin = null;
 				
-				//Breve verificação do campo do ComboBox
+				//Breve verificaï¿½ï¿½o do campo do ComboBox
 				if(cmbTipo.getSelectedItem() == null) {
 					tipo = "-";
 				} else {
@@ -208,13 +208,13 @@ public class adicionar extends JFrame {
 					}
 					
 					if(txtDescr.getText().length() == 0) {
-						descr = "Sem informações";
+						descr = "Sem informaï¿½ï¿½es";
 					} else {
 						descr = txtDescr.getText();
 					}
 					
-					//Envio dos dados para a classe do objeto em questão (produto)
-					produto item = new produto();
+					//Envio dos dados para a classe do objeto em questï¿½o (produto)
+					Produto item = new Produto();
 					
 					item.setId(Integer.parseInt(txtID.getText()));
 					item.setNome(txtNome.getText());
@@ -226,7 +226,7 @@ public class adicionar extends JFrame {
 					
 					//Chama o metodo para cadastrar os produtos
 					try {
-						database.cadastrar();
+						Database.cadastrar();
 					} catch (SQLException e1) {
 						e1.printStackTrace();
 					}
@@ -242,14 +242,14 @@ public class adicionar extends JFrame {
 	}
 	
 	/*
-	*Método para verificação dos campos do produto
-	*Aqui é verificado se todos os TextField e outros campos
+	*Mï¿½todo para verificaï¿½ï¿½o dos campos do produto
+	*Aqui ï¿½ verificado se todos os TextField e outros campos
 	*tem os valores de seus respectivos tipos.
-	*É retornado um valor booleano.
+	*ï¿½ retornado um valor booleano.
 	*/
 	private boolean verif(String id, String nome, String preco, String desconto, String gtin, String descr) {
 		if(id.length() == 0 || nome.length() == 0 || preco.length() == 0) {
-			JOptionPane.showMessageDialog(null, "Todos os campos obrigatórios devem estar preenchidos", "Preenchimento Obrigatório", JOptionPane.WARNING_MESSAGE);
+			JOptionPane.showMessageDialog(null, "Todos os campos obrigatï¿½rios devem estar preenchidos", "Preenchimento Obrigatï¿½rio", JOptionPane.WARNING_MESSAGE);
 			return false;
 		} else {	
 			try {
@@ -265,7 +265,7 @@ public class adicionar extends JFrame {
 				}
 				return true;
 			} catch(Exception error) {
-				JOptionPane.showMessageDialog(null, "Os campos ID, Preço, Desconto, GTIN devem conter valores numericos ou nenhum valor\nO ID e GTIN não podem conter ponto ou virgula", "Erro de Tipo", JOptionPane.ERROR_MESSAGE);
+				JOptionPane.showMessageDialog(null, "Os campos ID, Preï¿½o, Desconto, GTIN devem conter valores numericos ou nenhum valor\nO ID e GTIN nï¿½o podem conter ponto ou virgula", "Erro de Tipo", JOptionPane.ERROR_MESSAGE);
 				return false;
 			}
 		}

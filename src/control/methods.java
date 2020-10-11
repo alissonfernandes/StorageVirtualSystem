@@ -5,12 +5,12 @@ import java.io.FileReader;
 
 import javax.swing.JOptionPane;
 
-public class methods {
+public class Methods {
 	
 	/*
-	 * Método para sair do sistema com segurança
-	 * Ainda será implementado uma verificação para fazer o fechamento correto do sistema
-	 * fechando todos os arquivos e verificando se não terá nenhum arquivo prejudicado com o fechamento
+	 * Mï¿½todo para sair do sistema com seguranï¿½a
+	 * Ainda serï¿½ implementado uma verificaï¿½ï¿½o para fazer o fechamento correto do sistema
+	 * fechando todos os arquivos e verificando se nï¿½o terï¿½ nenhum arquivo prejudicado com o fechamento
 	 */
 	public void sair() {
 		int res = 1;
@@ -31,7 +31,7 @@ public class methods {
 		}
 	}
 	
-	//Método de criação de janela de confirmação generica
+	//Mï¿½todo de criaï¿½ï¿½o de janela de confirmaï¿½ï¿½o generica
 	public boolean confirm(String ir, String voltar, String msg) {
 		int res = 1;
 		Object[] options = { ir, voltar };
@@ -43,7 +43,7 @@ public class methods {
 		return false;
 	}
 	
-	//Método que verifica se o valor é inteiro
+	//Mï¿½todo que verifica se o valor ï¿½ inteiro
 	public boolean verifInt(String valor) {
 		boolean value = false;
 		
@@ -51,7 +51,7 @@ public class methods {
 			Integer.parseInt(valor);
 			value = true;
 		} catch(Exception error) {
-			JOptionPane.showMessageDialog(null, "O campo ID não pode esta vazio ou contem caracteres e pontuação\n" + 
+			JOptionPane.showMessageDialog(null, "O campo ID nï¿½o pode esta vazio ou contem caracteres e pontuaï¿½ï¿½o\n" + 
 											"O campo ID pode apenas conter numeros inteiros", 
 											"Falha ao identiidicar produto", JOptionPane.ERROR_MESSAGE);
 			value = false;

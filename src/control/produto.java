@@ -2,10 +2,10 @@ package control;
 
 import javax.swing.JOptionPane;
 
-import data.arquivos;
+import data.Arquivos;
 
 //Classe objeto produto
-public class produto {
+public class Produto {
 	private static int id;
 	private static String nome;
 	private static float preco;
@@ -15,7 +15,7 @@ public class produto {
 	private static String descr;
 	private static int quant;
 	
-	//Métodos getters e setters
+	//Mï¿½todos getters e setters
 	
 	public static int getId() {
 		return id;

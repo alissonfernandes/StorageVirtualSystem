@@ -8,21 +8,21 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.PrintWriter;
 
-import control.produto;
+import control.Produto;
 
 import javax.swing.JOptionPane;
 
 /*
  * ESSA CLASSE AINDA ESTA EM COMPLETO DESENVOLVIMENTO
- * TODA DECLARAÇÃO DELA FUTURAMENTE SERÁ TROCADA PELO ELASTICSEARCH
+ * TODA DECLARAï¿½ï¿½O DELA FUTURAMENTE SERï¿½ TROCADA PELO ELASTICSEARCH
  * PARA PODER LIDAR COM ARQUIVOS .json
- * PORTANTO NÃO IREI ME APERFEIÇOAR MUITO NA DOCUMENTAÇÃO E NA
- * ATUALIZAÇÃO DA MESMA
+ * PORTANTO Nï¿½O IREI ME APERFEIï¿½OAR MUITO NA DOCUMENTAï¿½ï¿½O E NA
+ * ATUALIZAï¿½ï¿½O DA MESMA
  */
 
-public class arquivos {
+public class Arquivos {
 	
-	//Método que faz o envio de novos dados para o arquivo .pdt
+	//Mï¿½todo que faz o envio de novos dados para o arquivo .pdt
 	public static void escrever(String p) {
 		try {
 			FileWriter produtos = new FileWriter("data/products.pdt", true);
@@ -37,7 +37,7 @@ public class arquivos {
 		}
 	}
 	
-	//Método que verifica a existencia de um ID
+	//Mï¿½todo que verifica a existencia de um ID
 	public static boolean verifNotID(String id) {
 		try {
 			FileReader arq = new FileReader("data/products.pdt");
@@ -79,8 +79,8 @@ public class arquivos {
 	
 	
 	/*
-	 * Os proximos 4 metodos são métodos para retornar as caracteristicas para 
-	 * a janela de remoção
+	 * Os proximos 4 metodos sï¿½o mï¿½todos para retornar as caracteristicas para 
+	 * a janela de remoï¿½ï¿½o
 	 */
 	public static String procurarNome(String id) {
 		try {
@@ -233,12 +233,12 @@ public class arquivos {
 		
 		return null;
 	}
-	//Fim dos métodos da janela de remoção
+	//Fim dos mï¿½todos da janela de remoï¿½ï¿½o
 	
 	
 	
 	
-	//Método responsavel por pegar os produtos e listar os mesmos
+	//Mï¿½todo responsavel por pegar os produtos e listar os mesmos
 	public static String listar() {
 		try {
 			FileReader arq = new FileReader("data/products.pdt");
@@ -256,7 +256,7 @@ public class arquivos {
 				arq.close();
 				ler.close();
 			} catch(Exception erro) {
-				JOptionPane.showMessageDialog(null, "Não há itens para serem lidos", "Estoque Vazio", JOptionPane.INFORMATION_MESSAGE);
+				JOptionPane.showMessageDialog(null, "Nï¿½o hï¿½ itens para serem lidos", "Estoque Vazio", JOptionPane.INFORMATION_MESSAGE);
 			}
 			return conteudo;
 		} catch(Exception erro) {

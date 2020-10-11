@@ -7,9 +7,9 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-import data.arquivos;
-import control.methods;
-import control.produto;
+import data.Arquivos;
+import control.Methods;
+import control.Produto;
 
 import javax.swing.JTextField;
 import javax.swing.JButton;
@@ -18,7 +18,7 @@ import java.awt.event.ActionEvent;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
-public class remove extends JFrame {
+public class Remove extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField txtID;
@@ -31,7 +31,7 @@ public class remove extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					remove frame = new remove();
+					Remove frame = new Remove();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -40,8 +40,8 @@ public class remove extends JFrame {
 		});
 	}
 
-	//Interface de remoção dos itens
-	public remove() {
+	//Interface de remoï¿½ï¿½o dos itens
+	public Remove() {
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 319, 266);
 		contentPane = new JPanel();
@@ -61,12 +61,12 @@ public class remove extends JFrame {
 		btnVerif.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				//Chama o método para verificar se o valor no campo ID é inteiro;
-				methods verificar = new methods();
+				//Chama o mï¿½todo para verificar se o valor no campo ID ï¿½ inteiro;
+				Methods verificar = new Methods();
 				if(verificar.verifInt(txtID.getText())) {
 					
-					//Chama o método conclusão para mostrar se é o produto que deve ser excluido
-					if(conclusão(txtID.getText())) {
+					//Chama o mï¿½todo conclusï¿½o para mostrar se ï¿½ o produto que deve ser excluido
+					if(conclusï¿½o(txtID.getText())) {
 						btnVerif.setEnabled(false);
 						txtID.setEnabled(false);
 						btnExcluir.setEnabled(true);
@@ -113,10 +113,10 @@ public class remove extends JFrame {
 		
 		btnExcluir.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				methods metodo = new methods();
+				Methods metodo = new Methods();
 				
-				if(metodo.confirm("Excluir", "Cancelar", "Isso excluira totalmente o item do seu sistema,\n e não terá como recupera-lo\nDeseja prosseguir?")) {
-					arquivos.excluirItem(txtID.getText());
+				if(metodo.confirm("Excluir", "Cancelar", "Isso excluira totalmente o item do seu sistema,\n e nï¿½o terï¿½ como recupera-lo\nDeseja prosseguir?")) {
+					Arquivos.excluirItem(txtID.getText());
 				}
 			}
 		});
@@ -149,18 +149,18 @@ public class remove extends JFrame {
 		contentPane.add(btnCancelar);
 	}
 	
-	//Método para procurar o item e retornar o valor que foi adicionado no objeto para o TextField
-	private boolean conclusão(String id) {
+	//Mï¿½todo para procurar o item e retornar o valor que foi adicionado no objeto para o TextField
+	private boolean conclusï¿½o(String id) {
 		boolean value = false;
 		
-		if(arquivos.verifNotID(id) == false) {
-			JOptionPane.showMessageDialog(null, "Esse ID não existe nos registros", "ID Inexistente", JOptionPane.ERROR_MESSAGE);
+		if(Arquivos.verifNotID(id) == false) {
+			JOptionPane.showMessageDialog(null, "Esse ID nï¿½o existe nos registros", "ID Inexistente", JOptionPane.ERROR_MESSAGE);
 			value = false;
 		} else {
-			String nome = arquivos.procurarNome(txtID.getText());
-			String preco = arquivos.procurarPreco(txtID.getText());
-			String gtin = arquivos.procurarGtin(txtID.getText());
-			String quant = arquivos.procurarQuant(txtID.getText());
+			String nome = Arquivos.procurarNome(txtID.getText());
+			String preco = Arquivos.procurarPreco(txtID.getText());
+			String gtin = Arquivos.procurarGtin(txtID.getText());
+			String quant = Arquivos.procurarQuant(txtID.getText());
 			
 			txtProd.setText(nome);
 			txtPreco.setText(preco);

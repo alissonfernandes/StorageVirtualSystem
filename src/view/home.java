@@ -16,7 +16,7 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 
-import control.methods;
+import control.Methods;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -26,13 +26,13 @@ import javax.swing.JLabel;
 import javax.swing.ImageIcon;
 import javax.swing.SwingConstants;
 
-public class home extends JFrame {
+public class Home extends JFrame {
 
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					home frame = new home();
+					Home frame = new Home();
 					frame.setLocationRelativeTo(null);
 					frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
 					frame.setVisible(true);
@@ -45,7 +45,7 @@ public class home extends JFrame {
 
 	//Interface principal
 	
-	public home() {
+	public Home() {
 		setIconImage(Toolkit.getDefaultToolkit().getImage("C:\\Users\\Invictus\\Downloads\\Logo-Tipo-T.ico"));
 		setTitle("Controle de Estoque");
 		setFont(new Font("Arial", Font.PLAIN, 14));
@@ -53,7 +53,7 @@ public class home extends JFrame {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 600, 500);
 		
-		//Inicio da criação do menu superior
+		//Inicio da criaï¿½ï¿½o do menu superior
 		
 		JMenuBar menuBar = new JMenuBar();
 		setJMenuBar(menuBar);
@@ -67,7 +67,7 @@ public class home extends JFrame {
 		JMenuItem mnClose = new JMenuItem("Sair");
 		mnClose.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				methods metodo = new methods();
+				Methods metodo = new Methods();
 				metodo.sair();
 			}
 		});
@@ -149,18 +149,18 @@ public class home extends JFrame {
 	private static void addPopup(Component component, final JPopupMenu popup) {
 	}
 	
-	//Método de verificação para abrir novas janelas
+	//Mï¿½todo de verificaï¿½ï¿½o para abrir novas janelas
 	
 	private void abrir(String janela) {
 		switch(janela) {
 			case "adicionar":
-				adicionar adic = new adicionar();
+				Adicionar adic = new Adicionar();
 				adic.setVisible(true);
-				JOptionPane.showMessageDialog(null, "Obrigatório o preenchimento dos campos ID, Nome, Preço\nUtilize o '.' no lugar da ',' em preço e desconto, não utilize o ponto na casa dos milhares", "ATENÇÃO", JOptionPane.WARNING_MESSAGE);
+				JOptionPane.showMessageDialog(null, "Obrigatï¿½rio o preenchimento dos campos ID, Nome, Preï¿½o\nUtilize o '.' no lugar da ',' em preï¿½o e desconto, nï¿½o utilize o ponto na casa dos milhares", "ATENï¿½ï¿½O", JOptionPane.WARNING_MESSAGE);
 				break;
 				
 			case "remove":
-				remove rmv = new remove();
+				Remove rmv = new Remove();
 				rmv.setVisible(true);
 				break;
 			
